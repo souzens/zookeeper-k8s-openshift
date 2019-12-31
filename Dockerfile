@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 
-MAINTAINER Enrique Garcia <engapa@gmail.com>
+MAINTAINER xxxxxxxxxx
 
 ARG ZOO_HOME=/opt/zookeeper
 ARG ZOO_USER=zookeeper
