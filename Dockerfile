@@ -12,7 +12,7 @@ ENV ZOO_HOME=$ZOO_HOME \
     ZOO_REPLICAS=1 \
     ZOO_USER=$ZOO_USER \
     ZOO_GROUP=$ZOO_GROUP \
-    ZOOCFGDIR=$ZOO_HOME/conf \
+    ZOO_CONF_DIR=$ZOO_HOME/conf \
     PATH=$ZOO_HOME/bin:${PATH}
 
 # Required packages
@@ -32,7 +32,7 @@ RUN rm -rf /tmp/zookeeper-download.sh && \
 
 # Add custom files.
 ADD zkBootstrap.sh $ZOO_HOME/bin
-ADD zookeeper-env.sh $ZOOCFGDIR
+ADD zookeeper-env.sh $ZOO_CONF_DIR
 
 RUN addgroup -S -g 1001 $ZOO_GROUP && \
     adduser -h $ZOO_HOME -g "zookeeper" -u 1001 -D -S -G $ZOO_GROUP $ZOO_USER&& \
@@ -52,4 +52,4 @@ EXPOSE ${ZK_clientPort:-2181} ${ZOO_SERVER_PORT:-2888} ${ZOO_ELECTION_PORT:-3888
 
 HEALTHCHECK --interval=10s --retries=10 CMD zkServer.sh status
 
-CMD zkBootstrap.sh && zkServer.sh --config $ZOOCFGDIR start-foreground
+CMD zkBootstrap.sh && zkServer.sh --config $ZOO_CONF_DIR start-foreground
