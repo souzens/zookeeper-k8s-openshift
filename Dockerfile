@@ -39,7 +39,7 @@ RUN addgroup -S -g 1001 $ZOO_GROUP && \
     chown -R $ZOO_USER:$ZOO_GROUP $ZOO_HOME && \
     chmod a+x $ZOO_HOME/bin/* && \
     chmod -R a+w $ZOO_HOME && \
-    chmod -R g+ws /conf && \
+    chmod -R g+ws $ZOO_HOME && \
     ln -s $ZOO_HOME/bin/zk_*.sh /usr/bin && \
     echo "${ZOO_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
